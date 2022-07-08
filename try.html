@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+<input type="file" class="form-control"  id="file-value">
+<button class="btn btn-success" id="upload-btn">預測上傳</button>
+<button class="btn btn-success" id="up-btn">標示上傳</button>
+	</body>
+	<script>
+    document.getElementById("upload-btn").onclick = upLoad;
+	  function upLoad() {
+			var data = [];
+			var files = document.getElementById("file-value").files;
+			if(files.length) {
+				var file = files[0];
+
+				var reader = new FileReader(); //new一个FileReader实例
+				reader.readAsText(file);
+				reader.onload = function(f) {
+					//显示文件  
+					var relArr = this.result.split("\r\n");
+					if(relArr.length > 1) {
+						for(var key = 1, len = relArr.length; key < len; key++) {
+							var values = relArr[key];
+							data.push(values);
+						}
+					}
+					console.log(data);
+          console.log(data[1]);
+          console.log(data[2]);
+				}
+			}
+		} 
+	</script>
+
+</html>
